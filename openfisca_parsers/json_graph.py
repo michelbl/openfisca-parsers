@@ -161,21 +161,3 @@ def json_graph_to_asg(json_graph):
                 raise ValueError('Unknown label : {0}'.format(label))
 
     return output_nodes
-
-
-def print_deep_diff(d1, d2, path=""):
-    for k in d1:
-        if k not in d2:
-            print path, ":"
-            print k + " as key not in d2", "\n"
-        else:
-            if isinstance(d1[k], dict):
-                path = k \
-                    if path == '' \
-                    else path + '->' + k
-                print_deep_diff(d1[k], d2[k], path)
-            else:
-                if d1[k] != d2[k]:
-                    print path, ":"
-                    print " - ", k, " : ", d1[k]
-                    print " + ", k, " : ", d2[k]
